@@ -24,8 +24,5 @@ rawdata_2=sample_R2_paired.fq
 --outFileNamePrefix sample_ \
 --genomeDir /path/to/STARIndex/ 
 
-#Step 4 Raw counts calculating for each gene
-/path/to/htseq-count -f bam -s no sample_Aligned.sortedByCoord.out.bam \
-/path/to/mm10_genes.gtf > sample.count.txt
 
 
