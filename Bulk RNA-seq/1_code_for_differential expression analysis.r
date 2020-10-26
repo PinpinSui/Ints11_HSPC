@@ -69,7 +69,7 @@ dev.off()
 #Step 2 Functional enrichment analysis for DEGs
 library(clusterProfiler)
 library(org.Mm.eg.db)
-#GO富集分析
+#GO
 data_A_up<-as.matrix(read.table("differential_expression_gene_up.txt",head=FALSE,sep="\t"))
 data_A_down<-as.matrix(read.table("differential_expression_gene_down.txt",head=FALSE,sep="\t"))
 
@@ -94,7 +94,7 @@ dev.off()
 
 
 
-#KEGG通路富集
+#KEGG
 data_A_up<-as.matrix(read.table("differential_expression_gene_up.txt",head=FALSE,sep="\t"))
 data_A_down<-as.matrix(read.table("differential_expression_gene_down.txt",head=FALSE,sep="\t"))
 
