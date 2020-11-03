@@ -10,16 +10,13 @@ ko.data <- Read10X(data.dir = "/path/to/KO/filtered_feature_bc_matrix/")
 
 ############### Set up WT object
 wt <- CreateSeuratObject(counts = wt.data, project = "WT_INTS11", min.cells = 3)
-#标记并去除双细胞
+#Doublets marking and removing
 doublets<-read.table("/path/to/WT_doublet.txt",head=TRUE,sep=",")
 wt$doublet<-doublets[,3]
 wt <- subset(x = wt, subset = doublet=="False")
-#计算线粒体比例
 wt[["percent.mt"]] <- PercentageFeatureSet(object = wt, pattern = "^mt-")
-#计算核糖体基因比例
 wt[["percent.rp"]] <- PercentageFeatureSet(object = wt, pattern = "^Rp[sl]")
 
-# 小提琴图
 pdf("WT_VlnPlot_gene_UMI_mito.pdf")
 VlnPlot(object = wt, features = c("nFeature_RNA", "nCount_RNA", "percent.mt","percent.rp"), ncol = 4)
 dev.off()
@@ -30,7 +27,7 @@ plot2 <- FeatureScatter(object = wt, feature1 = "nCount_RNA", feature2 = "nFeatu
 CombinePlots(plots = list(plot1, plot2))
 dev.off()
 
-#2.过滤细胞
+2.Cell filtering
 wt <- subset(x = wt, subset = nFeature_RNA > 500 & nFeature_RNA < 6000 & percent.mt < 10)
 wt$Genotype <- "WT"
 
@@ -42,15 +39,11 @@ wt <- SCTransform(wt, vars.to.regress = "percent.mt", verbose = TRUE)
 
 ############### Set up KO object
 ko <- CreateSeuratObject(counts = ko.data, project = "KO_INTS11", min.cells = 3)
-#标记并去除双细胞
 doublets<-read.table("/path/to/KO_doublet.txt",head=TRUE,sep=",")
 ko$doublet<-doublets[,3]
 ko <- subset(x = ko, subset = doublet=="False")
-#计算线粒体比例
 ko[["percent.mt"]] <- PercentageFeatureSet(object = ko, pattern = "^mt-")
-#计算核糖体基因比例
 ko[["percent.rp"]] <- PercentageFeatureSet(object = ko, pattern = "^Rp[sl]")
-# 小提琴图
 pdf("KO_VlnPlot_gene_UMI_mito.pdf")
 VlnPlot(object = ko, features = c("nFeature_RNA", "nCount_RNA", "percent.mt","percent.rp"), ncol = 4)
 dev.off()
@@ -61,7 +54,6 @@ plot2 <- FeatureScatter(object = ko, feature1 = "nCount_RNA", feature2 = "nFeatu
 CombinePlots(plots = list(plot1, plot2))
 dev.off()
 
-#2.过滤细胞
 ko <- subset(x = ko, subset = nFeature_RNA > 500 & nFeature_RNA < 6000 & percent.mt < 10)
 ko$Genotype <- "KO"
 
