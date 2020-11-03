@@ -1,7 +1,7 @@
 library(DiffBind)
 dbObj <- dba(sampleSheet="/path/to/peakinformation_samples.csv")
 dbObj <- dba.count(dbObj, bUseSummarizeOverlaps=TRUE)
-#数据评估
+#Quality Control
 pdf("WT_VS_KO_samples_PCA.pdf")
 dba.plotPCA(dbObj,  attributes=DBA_FACTOR, label=DBA_ID)
 dev.off()
@@ -9,7 +9,7 @@ pdf("WT_VS_KO_samples_clustering.pdf")
 plot(dbObj)
 dev.off()
 
-###########差异分析
+###########Differential analysis
 dbObj <- dba.contrast(dbObj, categories=DBA_FACTOR,minMembers = 2)
 dbObj <- dba.analyze(dbObj, method=DBA_ALL_METHODS)
 #  summary of results
@@ -20,7 +20,7 @@ dba.plotVenn(dbObj,contrast=1,method=DBA_ALL_METHODS)
 dev.off()
 comp1.edgeR <- dba.report(dbObj, method=DBA_EDGER, contrast = 1, th=1)
 comp1.deseq <- dba.report(dbObj, method=DBA_DESEQ2, contrast = 1, th=1)
-###################保存结果
+###################Results saving
 # EdgeR
 out <- as.data.frame(comp1.edgeR)
 write.table(out, file="WT_VS_KO_samples_edgeR.txt", sep="\t", quote=F, col.names = NA)
@@ -30,7 +30,7 @@ write.table(out, file="WT_VS_KO_samples_deseq2.txt", sep="\t", quote=F, col.name
 
 
 
-######################以bed格式保存显著差异的结果
+######################Significant differential results saving with bed format
 # Create bed files for each keeping only significant peaks (p < 0.05)
 # EdgeR
 out <- as.data.frame(comp1.edgeR)
