@@ -18,7 +18,7 @@ samtools index sample.last.bam
 bedtools bamtobed -i sample.last.bam  > sample.bed
 
 #Step 4 Peak calling
-/path/to/macs2 callpeak -t ../04_align/sample.last.bam -c ../04_align/input.last.bam -f BAM -g mm -n test -B -q 0.05 -n sample
+/path/to/macs2 callpeak -t ../04_align/sample.last.bam -c ../04_align/input.last.bam -f BAM -g mm  -B -q 0.05 -n sample
 
 #Step 5  Experimental evaluation with deeptools
 /path/to/bamCoverage --normalizeUsing CPM -b ../04_align/sample_1.last.bam -o sample_1.bw
