@@ -512,7 +512,7 @@ merged<-AddModuleScore(merged, features=monocyte, name="monocyte_score",assay="R
 merged@meta.data$Genotype<-factor(merged@meta.data$Genotype, levels=c("WT","KO"))
 Idents(merged) <- "celltype"
 merged@active.ident<-factor(merged@active.ident,levels=rev(c("NK","DC","Eosi","Bas/Mast","Macro","MonoP","immNeu","preNeu","proNeu","Ery/MK","LMPP","MPP3","MPP2","ST-HSC","LT-HSC")))
-pdf("0_monocyte_in_different_population_split_WT_first_HSPC.pdf")
+pdf("monocyte_in_different_population_split_WT_first_HSPC.pdf")
 VlnPlot(merged, features = c("monocyte_score1"), split.by = "Genotype",pt.size = 0.000, combine = TRUE,
 assay="RNA",slot="data",cols=c("firebrick3","gray"),sort=FALSE,
 idents=c("LMPP","MPP3","MPP2","ST-HSC","LT-HSC"))
@@ -524,7 +524,7 @@ merged<-AddModuleScore(merged, features=proliferation, name="proliferation_score
 merged@meta.data$Genotype<-factor(merged@meta.data$Genotype, levels=c("WT","KO"))
 Idents(merged) <- "celltype"
 merged@active.ident<-factor(merged@active.ident,levels=rev(c("NK","DC","Eosi","Bas/Mast","Macro","MonoP","immNeu","preNeu","proNeu","Ery/MK","LMPP","MPP3","MPP2","ST-HSC","LT-HSC")))
-pdf("0_proliferation_in_different_population_split_WT_first_HSPC.pdf")
+pdf("proliferation_in_different_population_split_WT_first_HSPC.pdf")
 VlnPlot(merged, features = c("proliferation_score1"), split.by = "Genotype",pt.size = 0.000, combine = TRUE,
 assay="RNA",slot="data",cols=c("firebrick3","gray"),sort=FALSE,
 idents=c("LMPP","MPP3","MPP2","ST-HSC","LT-HSC"))
@@ -568,7 +568,7 @@ merged<-AddModuleScore(merged, features=apoptosis, name="apoptosis_score",assay=
 merged@meta.data$Genotype<-factor(merged@meta.data$Genotype, levels=c("WT","KO"))
 Idents(merged) <- "celltype"
 merged@active.ident<-factor(merged@active.ident,levels=rev(c("NK","DC","Eosi","Bas/Mast","Macro","MonoP","immNeu","preNeu","proNeu","Ery/MK","LMPP","MPP3","MPP2","ST-HSC","LT-HSC")))
-pdf("0_apoptosis_in_different_population_split_WT_first_HSPC.pdf")
+pdf("apoptosis_in_different_population_split_WT_first_HSPC.pdf")
 VlnPlot(merged, features = c("apoptosis_score1"), split.by = "Genotype",pt.size = 0.000, combine = TRUE,
 assay="RNA",slot="data",cols=c("firebrick3","gray"),sort=FALSE,
 idents=c("LMPP","MPP3","MPP2","ST-HSC","LT-HSC"))
@@ -577,20 +577,20 @@ write.table(merged@meta.data,"merged.table.txt",quote=FALSE,sep="\t")
 
 
 
-pdf("0_proliferation_in_different_population_split_WT_first_candidate_populations.pdf")
+pdf("proliferation_in_different_population_split_WT_first_candidate_populations.pdf")
 VlnPlot(merged, features = c("proliferation_score1"), split.by = "Genotype",pt.size = 0.000, combine = TRUE,
 assay="RNA",slot="data",cols=c("firebrick3","gray"),sort=FALSE,
 idents=c("MonoP","proNeu","Ery/MK","LMPP","MPP3","ST-HSC","LT-HSC"))
 dev.off()
 
 
-pdf("0_stemnes_in_different_population_split_WT_first_candidate_populations.pdf")
+pdf("stemnes_in_different_population_split_WT_first_candidate_populations.pdf")
 VlnPlot(merged, features = c("stemness_score1"), split.by = "Genotype",pt.size = 0.000, combine = TRUE,
 assay="RNA",slot="data",cols=c("firebrick3","gray"),sort=FALSE,
 idents=c("MonoP","proNeu","Ery/MK","LMPP","MPP3","ST-HSC","LT-HSC"))
 dev.off()
 
-pdf("New_color_0_apoptosis_in_different_population_split_WT_first_candidate_populations.pdf")
+pdf("apoptosis_in_different_population_split_WT_first_candidate_populations.pdf")
 VlnPlot(merged, features = c("apoptosis_score1"), split.by = "Genotype",pt.size = 0.000, combine = TRUE,
 assay="RNA",slot="data",cols=c("firebrick3","gray"),sort=FALSE,
 idents=c("MonoP","proNeu","Ery/MK","LMPP","MPP3","ST-HSC","LT-HSC"))
@@ -598,13 +598,13 @@ dev.off()
 
 
 ###########candidate genes
-pdf("0_candidate_genes_in_different_population_split_WT_first_candidate_populations.pdf",width=8,height=8)
+pdf("candidate_genes_in_different_population_split_WT_first_candidate_populations.pdf",width=8,height=8)
 VlnPlot(merged, features = c("Gata2","Id2","Perp","Plk2","Trib1"), split.by = "Genotype",pt.size = 0.000, combine = TRUE,
 assay="RNA",slot="data",cols=c("firebrick3","gray"),sort=FALSE,ncol=2,
 idents=c("MonoP","proNeu","Ery/MK","LMPP","MPP3","MPP2","ST-HSC","LT-HSC"))
 dev.off()
 
-pdf("0_candidate_genes_in_different_population_split_WT_first_candidate_populations_Gata2.pdf",width=6,height=4)
+pdf("candidate_genes_in_different_population_split_WT_first_candidate_populations_Gata2.pdf",width=6,height=4)
 VlnPlot(merged, features = c("Gata2"), split.by = "Genotype",pt.size = 0.000, combine = TRUE,
 assay="RNA",slot="data",cols=c("firebrick3","gray"),sort=FALSE,
 idents=c("MonoP","proNeu","Ery/MK","LMPP","MPP3","MPP2","ST-HSC","LT-HSC"))
@@ -612,25 +612,25 @@ dev.off()
 
 
 
-pdf("0_candidate_genes_in_different_population_split_WT_first_candidate_populations_Id2.pdf",width=6,height=4)
+pdf("candidate_genes_in_different_population_split_WT_first_candidate_populations_Id2.pdf",width=6,height=4)
 VlnPlot(merged, features = c("Id2"), split.by = "Genotype",pt.size = 0.000, combine = TRUE,
 assay="RNA",slot="data",cols=c("firebrick3","gray"),sort=FALSE,
 idents=c("MonoP","proNeu","Ery/MK","LMPP","MPP3","MPP2","ST-HSC","LT-HSC"))
 dev.off()
 
-pdf("0_candidate_genes_in_different_population_split_WT_first_candidate_populations_Perp.pdf",width=6,height=4)
+pdf("candidate_genes_in_different_population_split_WT_first_candidate_populations_Perp.pdf",width=6,height=4)
 VlnPlot(merged, features = c("Perp"), split.by = "Genotype",pt.size = 0.000, combine = TRUE,
 assay="RNA",slot="data",cols=c("firebrick3","gray"),sort=FALSE,
 idents=c("MonoP","proNeu","Ery/MK","LMPP","MPP3","MPP2","ST-HSC","LT-HSC"))
 dev.off()
 
-pdf("0_candidate_genes_in_different_population_split_WT_first_candidate_populations_Plk2.pdf",width=6,height=4)
+pdf("candidate_genes_in_different_population_split_WT_first_candidate_populations_Plk2.pdf",width=6,height=4)
 VlnPlot(merged, features = c("Plk2"), split.by = "Genotype",pt.size = 0.000, combine = TRUE,
 assay="RNA",slot="data",cols=c("firebrick3","gray"),sort=FALSE,
 idents=c("MonoP","proNeu","Ery/MK","LMPP","MPP3","MPP2","ST-HSC","LT-HSC"))
 dev.off()
 
-pdf("0_candidate_genes_in_different_population_split_WT_first_candidate_populations_Trib1.pdf",width=6,height=4)
+pdf("candidate_genes_in_different_population_split_WT_first_candidate_populations_Trib1.pdf",width=6,height=4)
 VlnPlot(merged, features = c("Trib1"), split.by = "Genotype",pt.size = 0.000, combine = TRUE,
 assay="RNA",slot="data",cols=c("firebrick3","gray"),sort=FALSE,
 idents=c("MonoP","proNeu","Ery/MK","LMPP","MPP3","MPP2","ST-HSC","LT-HSC"))
